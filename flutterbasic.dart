@@ -11,9 +11,15 @@ void main() {
 }
 
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   // const Home({ Key? key }) : super(key: key);
 
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  int age = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,6 +30,15 @@ class Home extends StatelessWidget {
             centerTitle: true,
             elevation: 0.0,
             backgroundColor: Colors.grey[800]),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          setState(() {
+            age += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[600],
+      ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
         child: Column(
@@ -59,7 +74,15 @@ class Home extends StatelessWidget {
             ),
             SizedBox(height: 10.0),
             Text(
-              'nation first',
+              'AGE',
+              style: TextStyle(
+                color:Colors.grey,
+                letterSpacing: 2.0,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              '$age',
               style: TextStyle(
                 color: Colors.amberAccent[200],
                 fontSize: 22.0,
@@ -93,3 +116,4 @@ class Home extends StatelessWidget {
       );
   }
 }
+
