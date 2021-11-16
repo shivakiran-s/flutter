@@ -2,6 +2,7 @@
 
 import 'dart:ui';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,19 +17,79 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[900],
         appBar: AppBar(
             // ignore: prefer_const_constructors
             title: Text('SKSN'),
-            backgroundColor: Colors.red[400]),
-        body: Center(
-          child: Image(
-            image: NetworkImage('https://images.unsplash.com/photo-1569887652102-59696fef1528?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=718&q=80'),
-//           image: AssetImage('assets/image1.jpeg'),
-          )
+            centerTitle: true,
+            elevation: 0.0,
+            backgroundColor: Colors.grey[800]),
+      body: Padding(
+        padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Center(
+              child: CircleAvatar(
+                backgroundImage:AssetImage('assets/sksn.jpeg'),
+                radius: 45.0,
+
+              ),
+            ),
+            Divider(
+              height: 60.0,
+              color: Colors.grey[800],
+            ),
+            Text(
+              'NAME',
+              style: TextStyle(
+                color:Colors.grey,
+                letterSpacing: 2.0,
+                  ),
+                ),
+            SizedBox(height: 10.0),
+            Text(
+              'Shivakiran S',
+              style: TextStyle(
+                color:Colors.grey,
+                fontSize: 22.0,
+                letterSpacing: 2.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'nation first',
+              style: TextStyle(
+                color: Colors.amberAccent[200],
+                fontSize: 22.0,
+                letterSpacing: 2.0,
+                fontWeight: FontWeight.bold
+              ),
+            ),
+            SizedBox(height: 10.0),
+            Row(
+              children:<Widget>[
+                Icon(
+                  Icons.email,
+                  color: Colors.blue,
+                ),
+                SizedBox(width: 10.0),
+                Text(
+                  'sksn2211@gmail.com',
+                  style: TextStyle(
+                      color: Colors.amberAccent[200],
+                      fontSize: 22.0,
+                      letterSpacing: 2.0,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
+              ]
+            )
+          ],
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {  },
-        child: Text('cont.'),),
+      )
+
       );
   }
 }
