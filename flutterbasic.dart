@@ -1,119 +1,84 @@
 // ignore_for_file: avoid_print
 
-import 'dart:ui';
+
+
+// import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'quote.dart';
 
 void main() {
   runApp(MaterialApp(
-      home:Home() ));
+      home:Quotelist() ));
 }
-
-
-class Home extends StatefulWidget {
-  // const Home({ Key? key }) : super(key: key);
+class Quotelist extends StatefulWidget {
+  const Quotelist({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  _QuotelistState createState() => _QuotelistState();
 }
 
-class _HomeState extends State<Home> {
-  int age = 0;
+class _QuotelistState extends State<Quotelist> {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[900],
-        appBar: AppBar(
-            // ignore: prefer_const_constructors
-            title: Text('SKSN'),
-            centerTitle: true,
-            elevation: 0.0,
-            backgroundColor: Colors.grey[800]),
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          setState(() {
-            age += 1;
-          });
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.grey[600],
-      ),
-      body: Padding(
-        padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
+  List<Quote> quotes = [
+    Quote(author:'sksn',text:'Be yourself,everyone else already taken'),
+    Quote(author:'sksn',text:'Be yourself,everyone else already taken'),
+    Quote(author:'sksn',text:'Be yourself,everyone else already taken'),
+    Quote(author:'sksn',text:'Be yourself,everyone else already taken'),
+    Quote(author:'sksn',text:'Be yourself,everyone else already taken'),
+
+  ];
+  Widget quoteTemplate(quote){
+    return Card(
+      
+      margin: EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0),
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Center(
-              child: CircleAvatar(
-                backgroundImage:AssetImage('assets/sksn.jpeg'),
-                radius: 45.0,
-
+            Text(
+              quote.text,
+              style: TextStyle(
+                fontSize: 18.0,
+                color:Colors.grey[800]
               ),
             ),
-            Divider(
-              height: 60.0,
-              color: Colors.grey[800],
-            ),
+            SizedBox(height: 10.0,),
             Text(
-              'NAME',
+              quote.author,
               style: TextStyle(
-                color:Colors.grey,
-                letterSpacing: 2.0,
-                  ),
-                ),
-            SizedBox(height: 10.0),
-            Text(
-              'Shivakiran S',
-              style: TextStyle(
-                color:Colors.grey,
-                fontSize: 22.0,
-                letterSpacing: 2.0,
-                fontWeight: FontWeight.bold,
+                  fontSize: 18.0,
+                  color:Colors.grey[800]
               ),
             ),
-            SizedBox(height: 10.0),
-            Text(
-              'AGE',
-              style: TextStyle(
-                color:Colors.grey,
-                letterSpacing: 2.0,
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Text(
-              '$age',
-              style: TextStyle(
-                color: Colors.amberAccent[200],
-                fontSize: 22.0,
-                letterSpacing: 2.0,
-                fontWeight: FontWeight.bold
-              ),
-            ),
-            SizedBox(height: 10.0),
-            Row(
-              children:<Widget>[
-                Icon(
-                  Icons.email,
-                  color: Colors.blue,
-                ),
-                SizedBox(width: 10.0),
-                Text(
-                  'sksn2211@gmail.com',
-                  style: TextStyle(
-                      color: Colors.amberAccent[200],
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-              ]
-            )
           ],
         ),
-      )
-
-      );
+      ),
+    );
   }
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[600],
+      appBar: AppBar(
+        title: Text('awsome quote'),
+        centerTitle: true,
+        backgroundColor: Colors.grey[800],
+      ),
+      body:Column(
+        children: quotes.map((quote) => quoteTemplate(quote)).toList(),
+      )
+    );
+  }
+}
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------
+  
+  class Quote{
+  String text;
+  String author;
+
+  Quote({required this.text,required this.author});
 }
 
